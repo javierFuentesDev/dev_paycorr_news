@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {ApiResponseNy} from "../../interface/api-response-ny/api-response-ny";
 import {FetchArticlesParams} from "../../interface/fetch-articles-params/fetch-articles-params";
 import {DateService} from "../../utils/date-service/date.service";
+import {HttpParamsBuilderService} from "../http-params-builder/http-params-builder.service";
+import {LocalStorageService} from "../local-storage/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,27 +15,20 @@ export class ApiServiceNyService {
   private readonly apiUrl = `${environment.NY_TIMES_API_URL}/`;
   http = inject(HttpClient);
   dateService = inject(DateService);
+  paramsBuilder = inject(HttpParamsBuilderService);
+  localStorageService = inject(LocalStorageService);
 
   fetchArticles(fetchParams: FetchArticlesParams): Observable<ApiResponseNy> {
-    const params = this.buildHttpParams(fetchParams);
+
+    const formattedBeginDate = fetchParams.begin_date ? this.dateService.formatDate(fetchParams.begin_date) : null;
+    const formattedEndDate = fetchParams.end_date ? this.dateService.formatDate(fetchParams.end_date) : null;
+
+    const params = this.paramsBuilder
+      .add('q', fetchParams.query)
+      .add('page', fetchParams.page.toString())
+      .addIf(formattedBeginDate, 'begin_date', formattedBeginDate)
+      .addIf(formattedEndDate, 'end_date', formattedEndDate)
+      .build();
     return this.http.get<ApiResponseNy>(this.apiUrl, {params});
   }
-
-  private buildHttpParams(fetchParams: FetchArticlesParams): HttpParams {
-    let params = new HttpParams()
-      .set('q', fetchParams.query)
-      .set('page', fetchParams.page.toString())
-      .set('api-key', environment.NY_TIMES_API_KEY);
-
-    if (fetchParams.begin_date) {
-      params = params.set('begin_date', this.dateService.formatDate(fetchParams.begin_date));
-    }
-    if (fetchParams.end_date) {
-      params = params.set('end_date', this.dateService.formatDate(fetchParams.end_date));
-    }
-
-    return params;
-  }
-
-
 }

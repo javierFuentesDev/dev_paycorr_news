@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NytimesApiInterceptor} from './core/interceptors/nytimes-api.interceptor';
+import {ApiNytimesInterceptor} from './core/interceptors/api-nytimes.interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from "ngx-toastr";
 
@@ -18,7 +18,7 @@ import {ToastrModule} from "ngx-toastr";
     ToastrModule.forRoot()
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: NytimesApiInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ApiNytimesInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

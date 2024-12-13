@@ -1,16 +1,16 @@
-<div class="article-search">
-  <h2>Article Search Results</h2>
+<div>
+  <h1>Articles</h1>
+  <ul *ngIf="articles$ | async as articles; else loading">
+    <li *ngFor="let article of articles">
+      {{ article.headline.main }}
+    </li>
+  </ul>
+  <ng-template #loading>
+    <p>Loading articles...</p>
+  </ng-template>
 
-  <!-- Mostramos los artículos -->
-  <div *ngFor="let article of articles">
-    <h3><a [href]="article.web_url" target="_blank">{{ article.headline.main }}</a></h3>
-  </div>
-
-  <!-- Paginación -->
-  <div class="pagination">
+  <div>
     <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
-    <span>{{ currentPage + 1 }} of {{ totalResults / pageSize }}</span>
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage >= (totalResults / pageSize) - 1">Next
-    </button>
+    <button (click)="changePage(currentPage + 1)">Next</button>
   </div>
 </div>

@@ -11,7 +11,7 @@ import {environment} from '../../../environments/environment';
 import {NotificationService} from "../services/notification-service/notification-service.service";
 
 @Injectable()
-export class NytimesApiInterceptor implements HttpInterceptor {
+export class ApiNytimesInterceptor implements HttpInterceptor {
   notificationService = inject(NotificationService);
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,23 +22,29 @@ export class NytimesApiInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        const errorMessages: { [status: number]: string } = {
-          0: 'No internet connection or API server is unreachable',
-          400: 'Bad Request',
-          401: 'Unauthorized',
-          403: 'Forbidden',
-          404: 'Not Found',
-          500: 'Internal Server Error'
-        };
-
-        const errorMessage =
-          error.error instanceof ErrorEvent
-            ? `Client Error: ${error.error.message}`
-            : errorMessages[error.status] || `Error: ${error.statusText || 'Unknown error'}`;
-
+        console.error('HTTP Error:', error);
+        const errorMessage = this.getErrorMessage(error);
         this.notificationService.error(errorMessage, 'Error');
         return throwError(() => new Error(errorMessage));
       })
     );
   }
+
+  private getErrorMessage(error: HttpErrorResponse): string {
+    const errorMessages: { [status: number]: string } = {
+      0: 'No internet connection or API server is unreachable',
+      400: 'Bad Request: Please check your input.',
+      401: 'Unauthorized: Invalid API key.',
+      403: 'Forbidden: You do not have access to this resource.',
+      404: 'Not Found: The requested resource was not found.',
+      500: 'Internal Server Error: Please try again later.'
+    };
+
+    if (error.error instanceof ErrorEvent) {
+      return `Client Error: ${error.error.message}`;
+    }
+
+    return errorMessages[error.status] || `Unexpected Error: ${error.message || 'Unknown error occurred'}`;
+  }
+
 }
