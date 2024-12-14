@@ -6,7 +6,6 @@ import {ApiResponseNy} from "../../interface/api-response-ny/api-response-ny";
 import {FetchArticlesParams} from "../../interface/fetch-articles-params/fetch-articles-params";
 import {DateService} from "../../utils/date-service/date.service";
 import {HttpParamsBuilderService} from "../http-params-builder/http-params-builder.service";
-import {LocalStorageService} from "../local-storage/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,6 @@ export class ApiServiceNyService {
   http = inject(HttpClient);
   dateService = inject(DateService);
   paramsBuilder = inject(HttpParamsBuilderService);
-  localStorageService = inject(LocalStorageService);
 
   fetchArticles(fetchParams: FetchArticlesParams): Observable<ApiResponseNy> {
 
@@ -24,10 +22,12 @@ export class ApiServiceNyService {
     const formattedEndDate = fetchParams.end_date ? this.dateService.formatDate(fetchParams.end_date) : null;
 
     const params = this.paramsBuilder
-      .add('q', fetchParams.query)
+      .addIf(fetchParams.query, 'q', fetchParams.query)
       .add('page', fetchParams.page.toString())
       .addIf(formattedBeginDate, 'begin_date', formattedBeginDate)
       .addIf(formattedEndDate, 'end_date', formattedEndDate)
+      .addIf(fetchParams.sort, 'sort', fetchParams.sort)
+      .addIf(fetchParams.fl, 'fl', fetchParams.fl)
       .build();
     return this.http.get<ApiResponseNy>(this.apiUrl, {params});
   }

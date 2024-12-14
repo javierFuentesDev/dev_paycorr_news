@@ -44,7 +44,7 @@ export class ApiNytimesInterceptor implements HttpInterceptor {
       return `Client Error: ${error.error.message}`;
     }
 
-    return errorMessages[error.status] || `Unexpected Error: ${error.message || 'Unknown error occurred'}`;
+    return errorMessages[error.status] || `${error.statusText || 'Unknown error'}`;
   }
 
 }

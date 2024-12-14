@@ -1,11 +1,13 @@
 import {inject, Injectable} from '@angular/core';
-import {ToastrNotificationAdapter} from "../adapters/toastr-notification-adapter/toastr-notification-adapter.service";
+import {
+  NotiflixNotificationAdapter
+} from "../adapters/notiflix-notification-adapter/notiflix-notification-adapter.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
-  notificationAdapter = inject(ToastrNotificationAdapter);
+  notificationAdapter = inject(NotiflixNotificationAdapter);
 
   success(message: string, title?: string): void {
     this.notificationAdapter.success(message, title);

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {Multimedia} from "../../models/multimedia/multimedia";
 
 @Component({
   selector: 'app-article-card',
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ArticleCardComponent {
   @Input() headline: string = '';
-  @Input() multimedia: { url: string }[] = [];
+  @Input() multimedia: Multimedia[] = [];
   @Input() webUrl: string = '';
   @Input() wordCount: number = 0;
 }

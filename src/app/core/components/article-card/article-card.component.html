@@ -1,14 +1,15 @@
-<div class="card article-card h-100" role="article">
-  <header class="card-header article-card-header m-1">
+<div class="card article-card h-100 p-10" role="article">
+  <header class="article-card-header m-1">
     <h5 class="card-title article-card-title">
       {{ headline }}
     </h5>
     <div class="ratio ratio-4x3">
-      <img *ngIf="multimedia?.length"
-           class="card-img-top img-fluid"
-           [src]="multimedia[0].url | nyTimesImageUrl"
-           alt="Article Image">
+      <img
+        class="card-img img-fluid article-card-image"
+        [src]="multimedia | nyTimesImageUrl"
+        alt="Article Image">
     </div>
+
   </header>
   <div class="card-body article-card-content">
     <div class="d-flex justify-content-between align-items-center">

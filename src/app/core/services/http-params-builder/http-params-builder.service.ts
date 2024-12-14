@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpParams} from "@angular/common/http";
 
 @Injectable({
@@ -15,7 +15,7 @@ export class HttpParamsBuilderService {
     return this;
   }
 
-  addIf(condition: boolean | string | null | undefined, key: string, value: string | null): this {
+  addIf(condition: boolean | string | null | undefined, key: string, value: string | null | undefined): this {
     if (condition && value) {
       this.params = this.params.set(key, value);
     }
@@ -24,4 +24,5 @@ export class HttpParamsBuilderService {
 
   build(): HttpParams {
     return this.params;
-  }}
+  }
+}

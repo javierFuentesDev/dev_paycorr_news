@@ -13,6 +13,7 @@ import {NavbarComponent} from "./core/components/nav-bar/navbar.component";
 import {
   SkeletonArticleLoaderComponent
 } from "./core/components/skeleton-article-loader/skeleton-article-loader.component";
+import {BodyComponent} from "./core/components/body/body.component";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {
     ArticleCardComponent,
     SkeletonArticleLoaderComponent,
     NavbarComponent,
+    BodyComponent,
   ],
   imports: [
     BrowserModule,
