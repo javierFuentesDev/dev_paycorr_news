@@ -6,16 +6,33 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ApiNytimesInterceptor} from './core/interceptors/api-nytimes.interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from "ngx-toastr";
+import {NYTimesImageUrlPipe} from "./shared/pipes/nytimes-image-url/nytimes-image-url.pipe";
+import {ArticleCardComponent} from "./core/components/article-card/article-card.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {NavbarComponent} from "./core/components/nav-bar/navbar.component";
+import {
+  SkeletonArticleLoaderComponent
+} from "./core/components/skeleton-article-loader/skeleton-article-loader.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NYTimesImageUrlPipe,
+    ArticleCardComponent,
+    SkeletonArticleLoaderComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true,
+    }),
+    MatProgressSpinnerModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ApiNytimesInterceptor, multi: true},

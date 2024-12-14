@@ -1,0 +1,39 @@
+.article-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .article-card-header {
+    h5 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0.5rem;
+
+      min-height: 3rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  .article-card-content {
+    .read-more-link {
+      color: #6c757d;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .words-count {
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+  }
+}

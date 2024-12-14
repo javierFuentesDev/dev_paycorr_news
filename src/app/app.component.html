@@ -1,16 +1,28 @@
-<div>
-  <h1>Articles</h1>
-  <ul *ngIf="articles$ | async as articles; else loading">
-    <li *ngFor="let article of articles">
-      {{ article.headline.main }}
-    </li>
-  </ul>
-  <ng-template #loading>
-    <p>Loading articles...</p>
+<app-navbar
+  [currentPage]="pagination.currentPage"
+  [totalPages]="pagination.totalPages"
+  (refreshClicked)="loadArticles()"
+  (previousPageClicked)="changePage('previous')"
+  (nextPageClicked)="changePage('next')">
+</app-navbar>
+
+<section class="articles-grid container mt-4 p-2">
+
+  <div *ngIf="articles$ | async as articles; else emptyState">
+    <div class="row">
+      <div *ngFor="let article of articles; trackBy: trackById" class="col-12 col-sm-6 col-md-4 mb-4">
+        <app-article-card
+          [headline]="article.headline.main"
+          [multimedia]="article.multimedia"
+          [webUrl]="article.web_url"
+          [wordCount]="article.word_count">
+        </app-article-card>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <app-skeleton-article-loader *ngIf="!(articles$ | async)"></app-skeleton-article-loader>
   </ng-template>
 
-  <div>
-    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
-    <button (click)="changePage(currentPage + 1)">Next</button>
-  </div>
-</div>
+</section>

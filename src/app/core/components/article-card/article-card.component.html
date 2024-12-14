@@ -1,0 +1,19 @@
+<div class="card article-card h-100" role="article">
+  <header class="card-header article-card-header m-1">
+    <h5 class="card-title article-card-title">
+      {{ headline }}
+    </h5>
+    <div class="ratio ratio-4x3">
+      <img *ngIf="multimedia?.length"
+           class="card-img-top img-fluid"
+           [src]="multimedia[0].url | nyTimesImageUrl"
+           alt="Article Image">
+    </div>
+  </header>
+  <div class="card-body article-card-content">
+    <div class="d-flex justify-content-between align-items-center">
+      <a [href]="webUrl" target="_blank" class="btn btn-link read-more-link">Read more</a>
+      <span class="text-muted words-count">{{ wordCount }} words</span>
+    </div>
+  </div>
+</div>
