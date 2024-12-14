@@ -1,4 +1,4 @@
-<div class="loading-state">
+<div class="loading-state" *ngIf="!isTableView">
   <div class="row">
     <div *ngFor="let skeleton of skeletons" class="col-12 col-sm-6 col-md-4 mb-4">
       <div class="skeleton-card h-100" role="presentation">
@@ -14,3 +14,13 @@
     </div>
   </div>
 </div>
+
+<div class="loading-state skeleton-table" *ngIf="isTableView">
+  <div class="skeleton-row" *ngFor="let skeleton of skeletons">
+    <div class="skeleton-cell"></div>
+    <div class="skeleton-cell"></div>
+    <div class="skeleton-cell"></div>
+    <div class="skeleton-cell"></div>
+  </div>
+</div>
+

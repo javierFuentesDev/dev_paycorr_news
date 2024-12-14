@@ -6,5 +6,6 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./skeleton-article-loader.component.scss']
 })
 export class SkeletonArticleLoaderComponent {
+  @Input() isTableView: boolean = false;
   skeletons = Array(10);
 }

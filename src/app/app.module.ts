@@ -9,11 +9,11 @@ import {ToastrModule} from "ngx-toastr";
 import {NYTimesImageUrlPipe} from "./shared/pipes/nytimes-image-url/nytimes-image-url.pipe";
 import {ArticleCardComponent} from "./core/components/article-card/article-card.component";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {NavbarComponent} from "./core/components/nav-bar/navbar.component";
+import {NavbarComponent} from "./core/components/layout/nav-bar/navbar.component";
 import {
   SkeletonArticleLoaderComponent
 } from "./core/components/skeleton-article-loader/skeleton-article-loader.component";
-import {BodyComponent} from "./core/components/body/body.component";
+import {BodyComponent} from "./core/components/layout/body/body.component";
 
 @NgModule({
   declarations: [

@@ -1,3 +1,4 @@
+/* Skeleton para Cards */
 .skeleton-card {
   display: flex;
   flex-direction: column;
@@ -16,7 +17,7 @@
 
   .skeleton-image {
     background: rgba(220, 220, 220, 0.8);
-    aspect-ratio: 4 / 3; /* Asegura proporciones */
+    aspect-ratio: 4 / 3; /* Mantiene proporciones */
     width: 100%;
     border-radius: 8px;
     margin-bottom: 8px;
@@ -58,6 +59,67 @@
   }
 }
 
+/* Skeleton para Tabla con Mayor Contraste en Estilo Striped */
+.skeleton-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+
+  .skeleton-row {
+    display: table-row;
+    height: 80px;
+    animation: shimmer 2s infinite linear;
+
+    &:nth-child(odd) {
+      background: linear-gradient(
+          90deg,
+          rgba(245, 245, 245, 1) 25%,
+          rgba(235, 235, 235, 1) 50%,
+          rgba(245, 245, 245, 1) 75%
+      );
+    }
+
+    &:nth-child(even) {
+      background: linear-gradient(
+          90deg,
+          rgba(225, 225, 225, 1) 25%,
+          rgba(210, 210, 210, 1) 50%,
+          rgba(225, 225, 225, 1) 75%
+      );
+    }
+
+    .skeleton-cell {
+      display: table-cell;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      border-radius: 4px;
+      height: 30px;
+      background: rgba(230, 230, 230, 0.8);
+    }
+
+    .skeleton-cell:first-child {
+      width: 40%;
+    }
+
+    .skeleton-cell:nth-child(2) {
+      width: 20%;
+    }
+
+    .skeleton-cell:nth-child(3) {
+      width: 20%;
+    }
+
+    .skeleton-cell:last-child {
+      width: 20%;
+    }
+  }
+}
+
+/* Animación Shimmer */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -66,3 +128,5 @@
     background-position: 200% 0;
   }
 }
+
+

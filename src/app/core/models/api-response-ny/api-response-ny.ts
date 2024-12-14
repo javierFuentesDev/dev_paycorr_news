@@ -1,5 +1,5 @@
-import {Article} from "../../models/article/article";
-import {Meta} from "../../models/meta/meta";
+import {Article} from "../article/article";
+import {Meta} from "../meta/meta";
 
 export interface ApiResponseNy {
   status: string;

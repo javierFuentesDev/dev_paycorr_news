@@ -2,8 +2,8 @@ import {inject, Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ApiResponseNy} from "../../interface/api-response-ny/api-response-ny";
-import {FetchArticlesParams} from "../../interface/fetch-articles-params/fetch-articles-params";
+import {ApiResponseNy} from "../../models/api-response-ny/api-response-ny";
+import {FetchArticlesParams} from "../../models/fetch-articles-params/fetch-articles-params";
 import {DateService} from "../../utils/date-service/date.service";
 import {HttpParamsBuilderService} from "../http-params-builder/http-params-builder.service";
 

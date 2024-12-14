@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import {Article} from "../../models/article/article";
+import {Article} from "../../../models/article/article";
 
 @Component({
   selector: 'app-body',
@@ -10,4 +10,9 @@ import {Article} from "../../models/article/article";
 export class BodyComponent {
   @Input() articles$!: Observable<Article[]>;
   @Input() loading$!: Observable<boolean>;
+  isTableView: boolean = false;
+
+  toggleView(): void {
+    this.isTableView = !this.isTableView;
+  }
 }

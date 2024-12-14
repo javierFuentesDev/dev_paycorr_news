@@ -1,0 +1,63 @@
+<section class="articles-grid container mt-4 p-2">
+  <div class="toggle-view mb-3 text-end">
+    <button class="btn btn-outline-secondary" (click)="toggleView()">
+      {{ isTableView ? 'Switch to Card View' : 'Switch to Table View' }}
+    </button>
+  </div>
+
+  <div *ngIf="loading$ | async; else contentState">
+    <app-skeleton-article-loader
+      [isTableView]=isTableView
+    ></app-skeleton-article-loader>
+  </div>
+
+  <ng-template #contentState>
+    <table *ngIf="isTableView; else cardView" class="table table-striped">
+      <thead>
+      <tr>
+        <th>Headline</th>
+        <th>Image</th>
+        <th>Word Count</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let article of articles$ | async">
+        <td>{{ article.headline.main }}</td>
+        <td>
+          <img
+            [src]="article.multimedia | nyTimesImageUrl"
+            alt="Article Image"
+            class="img-fluid table-image"
+          />
+        </td>
+        <td>{{ article.word_count }}</td>
+        <td>
+          <a [href]="article.web_url" target="_blank" class="btn btn-sm btn-link">Read more</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ng-template #cardView>
+      <div *ngIf="articles$ | async as articles; else noArticlesState">
+        <div class="row">
+          <div *ngFor="let article of articles" class="col-12 col-sm-6 col-md-4 mb-4">
+            <app-article-card
+              [headline]="article.headline.main"
+              [multimedia]="article.multimedia"
+              [webUrl]="article.web_url"
+              [wordCount]="article.word_count">
+            </app-article-card>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
+
+  <ng-template #noArticlesState>
+    <div class="empty-state text-center py-5 d-flex justify-content-center align-items-center flex-column">
+      <p class="empty-state-message mt-3">No articles available. Please try again later or refresh.</p>
+    </div>
+  </ng-template>
+</section>

@@ -4,7 +4,7 @@ import {catchError, finalize, map} from 'rxjs/operators';
 import {Article} from "../../models/article/article";
 import {ApiServiceNyService} from "../api-service-ny/api-service-ny.service";
 import {LocalStorageService} from "../local-storage/local-storage.service";
-import {FetchArticlesParams} from "../../interface/fetch-articles-params/fetch-articles-params";
+import {FetchArticlesParams} from "../../models/fetch-articles-params/fetch-articles-params";
 import {NotificationService} from "../notification-service/notification-service.service";
 import {LoadingService} from "../loading-service/loading-service.service";
 
