@@ -34,7 +34,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/notiflix/dist/notiflix-3.2.6.min.css",
+              "node_modules/notiflix/dist/notiflix-3.2.7.min.css",
               "src/styles.scss"
             ],
             "scripts": []
