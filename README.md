@@ -1,27 +1,80 @@
-# DevPaycorrNews
+# NYT Articles Viewer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+A modern Angular application to browse articles from The New York Times. The application supports switching between a card view and a table view, and includes elegant skeleton loaders for both layouts.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Switchable Views**: Toggle between a card view and a table view for displaying articles.
+- **Skeleton Loaders**: Interactive loaders with animations for both card and table views.
+- **Offline Access**: Articles are cached in local storage to provide offline access.
+- **Responsive Design**: Fully responsive interface using Bootstrap.
+- **Dynamic Notifications**: User feedback with Notiflix notifications.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+### Core Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular**: Framework for building the application (`16.2.12`).
+- **Angular CLI**: Command-line interface for Angular (`16.2.16`).
+- **Node.js**: Server-side runtime (`18.20.5`).
+- **Package Manager**: npm (`10.8.2`).
 
-## Running unit tests
+### Third-Party Libraries
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Bootstrap**: Styling framework for responsive design (`^5.3.3`).
+- **Bootstrap Icons**: Icon library for UI enhancements (`^1.11.3`).
+- **Notiflix**: Notifications and loading indicators (`^3.2.7`).
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Prerequisites
 
-## Further help
+### Node.js and NVM
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project requires **Node.js**. If you manage multiple Node.js versions, it is recommended to use **NVM** (Node Version Manager):
+
+1. **Install NVM**:  
+   Follow the instructions from the [official NVM repository](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+2. **Install Node.js with NVM**:
+   ```bash
+   nvm install 18
+   nvm use 18
+   ```
+
+3. **Check Installed Node.js Version:**:
+   ```bash
+    node -v
+   ```
+
+---
+
+## Getting Started
+
+To set up the application locally:
+
+1. ### Clone the Repository:
+
+   ```bash
+      git clone https://github.com/javierFuentesDev/dev_paycorr_news.git
+      cd dev_paycorr_news
+   ```
+
+2. ### Install Dependencies:
+   Ensure you’re using the correct Node.js version with nvm use before running:
+
+   ```bash 
+      npm install
+   ```
+
+3. ### Start the Development Server:
+
+   ```bash 
+      ng serve
+   ```
+
+4. ### Access the Application:
+
+Open your browser and go to http://localhost:4200.
